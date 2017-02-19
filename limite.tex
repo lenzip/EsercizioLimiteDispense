@@ -164,11 +164,39 @@ The distribution of  $m_{T,i}$ is shown in Fig.~\ref{fig:mti} after the
 selection cuts. The data point are show on top of the stack of the
 backgrounds. The shape of a signal for X mass of 1 TeV is also shown
 (multiplied by 10). The rightmost bin of each distribution is an overflow bin.
-The fact that the signal shape does not peak at 1 TeV is due to the fact that
-$m_{T,i}$ lacks the contribution from the longitudinal  momenta of neutrinos.
+The fact that the signal shape does not peak at 1 TeV is due to 
+$m_{T,i}$ lacking the contribution from the longitudinal  momenta of neutrinos.
 \begin{figure}[!b]
 \centering
 \includegraphics[width=0.6\textwidth]{images/mTi.pdf}
 \caption{$m_{T,i}$ in data and simulation for 2015 data after selection cuts.\label{fig:mti}}
 \end{figure}
+
+\subsection*{Exercise 1: }
+{\bf Write a code that builds the stack of backgrounds to obtain a plot
+similar to Fig.~\ref{fig:mti}.}
+
+A set of root files is provided, together with a root macro
+(\verb;HWWYields.C;) implementing selection cuts.
+
+Each root file contains a root tree names \verb;latino;. This tree holds
+several variables, including $m_{T,i}$ in a branch called \verb;mTi;.
+
+Eight data files are provided, corresponding to two distinct data taking periods
+(called \verb;Run2015C; and \verb;Run2015D;) and four triggers. Data from CMS
+are in fact divided into different streams depending on the triggers each
+event fires. In this analysis we use events with at least two electrons
+(\verb;DoubleEG;), at least two muons (\verb;DoubleMu;), at least an electron and a muon
+(\verb;MuonEG;) or at least a muon  (\verb;SingleMuon;). The latter is used
+only to recover an inefficiency in the other triggers.
+
+Simulated events (MC) are produced for several physics processes, including
+$t\bar{t}$, WW, Z$\rightarrow{}\tau\tau$, and other subleading processes.
+Simulated samples for different mass hypotheses for X are also provided. For
+each mass hypothesis two different files are provided, one containing the
+simulation of the ggF production mechanism and the other containing the
+simulation for the VBF production mechanism.
+
+\subsection{Cut based analysis}
+
 \end{document}          
