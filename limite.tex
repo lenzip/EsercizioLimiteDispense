@@ -74,7 +74,7 @@ boson cross section: \begin{equation}
  where M is the mass of X, and obvious meaning of the other symbols. This is a
  reasonable assumption, verified by several new physics models.  We notice
  that {\bf the relative importance of the VBF mechansm grows with the X mass},
- and becomes dominant above \~1.5 TeV.
+ and becomes dominant above $\sim$1.5 TeV.
  
  We will assume that, like H, also X has several decay channels. We assume
  that X has the same branching ratios of H, which are summarized in
@@ -92,11 +92,11 @@ branching ratio}.
 \section{Data sample and analysis strategy}
 Owing to the large branching fraction in the WW final state we choose this
 channel for our search. In other words we search for the decay
-X$\rightarrow$WW. The W bosons are themselves unstable and can decay
-to a charged lepton (electron, muon, tauon) and a neutrino (30\% of the times
-overall, equally divided for the three lepton species) and 70\% to a pair of
-hadrons. In this exercise we will concentrate on the leptonic decays of the W
-bosons. The reason of this choice will become clearer in when we discuss
+X$\rightarrow$WW. The W bosons are themselves unstable. 30\% of the times
+ a W boson decays to a charged lepton (electron, muon, tauon) and a neutrino
+ (10 \% for each of the three lepton species). The remaining 70\% of the times
+ the W boson decays to a pair of hadrons. In this exercise we will concentrate on the leptonic decays of the W
+bosons. The reason of this choice will become clearer when we discuss
 backgrounds, but let us mention already that requiring leptons in the final
 state allows a dramatic reduction of background processes. 
 To summarise, {\bf we search for the H$\rightarrow$WW$\rightarrow{}2l2\nu$ decay
@@ -150,14 +150,14 @@ but is beyond the scope of this exercise. The cuts to be applied will be
 provided by the teachers.
 
 \subsection{Main discriminating variable}
-After the selection cuts mentioned above to suppress the backgrounds we end up
+After the selection cuts mentioned above we end up
 with a sample that is primarily composed of WW and $t\bar{t}$. In order to
-further discriminate a possible signal and backgrounds we use a kinematic
+further discriminate a possible signal we use a kinematic
 variable called $m_{T,i}$. This variable is the invariant mass of the
 4-momentum resulting from the sum of the two lepton 4-momenta and the MET
 4-momentum. Since we are unable to reconstruct the longitudinal component of
 the neutrinos momenta, this variable is the closest approximation of
-the resonance invariant mass that we can in a signal event, and it retains a
+the resonance invariant mass that we can reconstruct in a signal event, and it retains a
 significant discriminating power with respect to backgrounds.
 
 The distribution of  $m_{T,i}$ is shown in Fig.~\ref{fig:mti} after the
@@ -179,7 +179,7 @@ similar to Fig.~\ref{fig:mti}.}
 A set of root files is provided, together with a root macro
 (\verb;HWWYields.C;) implementing selection cuts.
 
-Each root file contains a root tree names \verb;latino;. This tree holds
+Each root file contains a root tree named \verb;latino;. This tree holds
 several variables, including $m_{T,i}$ in a branch called \verb;mTi;.
 
 Eight data files are provided, corresponding to two distinct data taking periods
@@ -197,6 +197,60 @@ each mass hypothesis two different files are provided, one containing the
 simulation of the ggF production mechanism and the other containing the
 simulation for the VBF production mechanism.
 
+Simulated events are weighted with several weights that are aimed at bringing
+data and MC in close agreement. We will not discuss these weight in detail. We
+will just discuss an important weight contained in the branch named
+\verb;baseW;. This variable is used to equalize the
+luminosity of all samples to 1/fb.
+
+Running \verb;HWWYields.C; results in a root file (\verb;yields.root;)
+containing one histogram for each background, one for each signal and one for the
+data. The variable plotted and the binning are controlled in the first few
+lines of \verb;HWWYields.C;.
+
+Please write a root macro that builds a stack of all the backgrounds,
+superimposes the data and one signal for reference.
+
 \subsection{Cut based analysis}
+In order to check whether the data are consistent with the signal+background
+hypothesis or with the background only hypothesis, we can proceed to counting
+events passing our selection. Let $N_{obs}$ be the data events after the
+selection, $\nu_b$ be the expected number of background evens and $\nu_s(M)$ be
+the expected number of signal events for an X signal with mass $M$. 
+We expect $N_{obs}$ to follow the Poisson statistics with an average of
+$\nu_b+\nu_s(M)$ in the signal+background hypothesis and $\nu_b$ in the
+background only hypothesis.
+
+The best estimate that we can give of the number of signal events, based on a
+single experiment, is
+\begin{equation}
+\hat{\nu}_s(M)=N_{obs}-\nu_b.
+\label{eq:nuhat}
+\end{equation}
+
+In order to understand whether the obtained value of $\hat{\nu}_s(M)$ is
+significantly different from 0 we should compare it with the statistical
+fluctuation of the expected background. Only if $\hat{\nu_s(M)}$ is larger
+than several standard deviations (5) of the expected background we can claim a
+discovery.
+
+Following this discussion we are left with an open question: should we ad any
+other selection cuts to our selection to improve the analysis sensitivity to a
+signal?
+
+\section*{Exercise 2}
+{\bf For each X mass hypothesis find the cut on $m_{T,i}$ which maximises the
+sensitivity}
+
+Fig.~\ref{fig:mti} shows that $m_{T,i}$ has a good discriminating power. In
+particular if we only count events above a certain optimal value of  $m_{T,i}$ we
+should be able to improve the sensitivity to a signal. 
+
+The student should find, for each X mass hypothesis, the value of $m_{T,i}$
+($m_{T,i}^{cut}$) such that by integrating events with
+$m_{T,i}>m_{T,i}^{cut}$ the ratio of expected number of signal events
+$\nu_s(M)$ and the statistical fluctuation of background events
+$\sqrt{\nu_b}$ ($\nu_s(M)/\sqrt{\nu_b}$) is maximised.
+
 
 \end{document}          
