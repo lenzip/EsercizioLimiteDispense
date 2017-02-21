@@ -224,13 +224,16 @@ background only hypothesis.
 The best estimate that we can give of the number of signal events, based on a
 single experiment, is
 \begin{equation}
-\hat{\nu}_s(M)=N_{obs}-\nu_b.
+\hat{\nu}_s(M)=N_{obs}(M)-\nu_b(M)
 \label{eq:nuhat}
 \end{equation}
+where the dependency on the mass hypothesis is there to remind us that the
+analysis cuts can be different depending on the mass of the signal we search
+for.
 
 In order to understand whether the obtained value of $\hat{\nu}_s(M)$ is
 significantly different from 0 we should compare it with the statistical
-fluctuation of the expected background. Only if $\hat{\nu_s(M)}$ is larger
+fluctuation of the expected background. Only if $\hat{\nu}_s(M)$ is larger
 than several standard deviations (5) of the expected background we can claim a
 discovery.
 
@@ -251,6 +254,39 @@ The student should find, for each X mass hypothesis, the value of $m_{T,i}$
 $m_{T,i}>m_{T,i}^{cut}$ the ratio of expected number of signal events
 $\nu_s(M)$ and the statistical fluctuation of background events
 $\sqrt{\nu_b}$ ($\nu_s(M)/\sqrt{\nu_b}$) is maximised.
+
+\subsection{Upper limit with approximate formulae}
+Upon completion of Exercise 2 the student has found the optimal value in
+$m_{T,i}$ where one should cup in order to find a possible signal. The optimal
+position of the cut depends on the mass of the hypothesized signal.
+
+We now aim at finding the upper limit for each mass hypothesis.
+We refer to Cowan's book equation 9.39. The upper limit at 95\% confidence
+level on the number of signal events ($\nu_{up}$) can be found as:
+\begin{equation}
+\nu_{up} = \hat{\nu}_s(M) + \delta_{\hat{\nu}_s(M)}\cdot\Phi^{-1}(0.95)
+\label{eq:limitcowan}
+\end{equation}
+where $\hat{\nu}_s(M)$ is given by Eq.~\ref{eq:nuhat}, $\delta_{\hat{\nu}_s(M)}$ 
+is the error on $\hat{\nu}_s(M)$, $\Phi^{-1}$ is the inverse cumulative distribution 
+of the Gaussian.
+
+Eq.~\ref{eq:limitcowan} {\bf holds under the assumption that the distribution of
+$\hat{\nu}_s(M)$ is Gaussian}. However $\hat{\nu}_s(M)$, as defined in
+Eg.~\ref{eq:nuhat} comes as the difference between a random variable
+distributed according to Poisson distribution ($N_{obs}$) and a number. The
+assumption that $\hat{\nu}_s(M)$ is Gaussian is only valid in case $N_{obs}$
+has a relatively large expectation value, so that the difference between
+Poisson and Gaussian distribution can be neglected.
+
+How do we estimate $\delta_{\hat{\nu}_s(M)}$? If we know the number of
+expected background events with no error, then
+$\delta_{\hat{\nu}_s(M)}=\sqrt{N_{obs}}$, following Poisson statistics. 
+
+However we usually have an uncertainty on the estimation of the number of
+background events. This kind of uncertainty is systematic, contrary to the
+uncertainty on $N_{obs}$, which is statistical instead. It is not obvious how
+to combine the two uncertainties into $\delta_{\hat{\nu}_s(M)}$.
 
 
 \end{document}          
