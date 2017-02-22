@@ -215,25 +215,25 @@ superimposes the data and one signal for reference.
 In order to check whether the data are consistent with the signal+background
 hypothesis or with the background only hypothesis, we can proceed to counting
 events passing our selection. Let $N_{obs}$ be the data events after the
-selection, $\nu_b$ be the expected number of background evens and $\nu_s(M)$ be
+selection, $\nu_b$ be the expected number of background evens and $\nu_s$ be
 the expected number of signal events for an X signal with mass $M$. 
 We expect $N_{obs}$ to follow the Poisson statistics with an average of
-$\nu_b+\nu_s(M)$ in the signal+background hypothesis and $\nu_b$ in the
+$\nu_b+\nu_s$ in the signal+background hypothesis and $\nu_b$ in the
 background only hypothesis.
 
 The best estimate that we can give of the number of signal events, based on a
 single experiment, is
 \begin{equation}
-\hat{\nu}_s(M)=N_{obs}(M)-\nu_b(M)
+\hat{\nu}_s=N_{obs}-\nu_b
 \label{eq:nuhat}
 \end{equation}
 where the dependency on the mass hypothesis is there to remind us that the
 analysis cuts can be different depending on the mass of the signal we search
 for.
 
-In order to understand whether the obtained value of $\hat{\nu}_s(M)$ is
+In order to understand whether the obtained value of $\hat{\nu}_s$ is
 significantly different from 0 we should compare it with the statistical
-fluctuation of the expected background. Only if $\hat{\nu}_s(M)$ is larger
+fluctuation of the expected background. Only if $\hat{\nu}_s$ is larger
 than several standard deviations (5) of the expected background we can claim a
 discovery.
 
@@ -252,8 +252,8 @@ should be able to improve the sensitivity to a signal.
 The student should find, for each X mass hypothesis, the value of $m_{T,i}$
 ($m_{T,i}^{cut}$) such that by integrating events with
 $m_{T,i}>m_{T,i}^{cut}$ the ratio of expected number of signal events
-$\nu_s(M)$ and the statistical fluctuation of background events
-$\sqrt{\nu_b}$ ($\nu_s(M)/\sqrt{\nu_b}$) is maximised.
+$\nu_s$ and the statistical fluctuation of background events
+$\sqrt{\nu_b}$ ($\nu_s/\sqrt{\nu_b}$) is maximised.
 
 \subsection{Upper limit with approximate formulae}
 Upon completion of Exercise 2 the student has found the optimal value in
@@ -264,29 +264,100 @@ We now aim at finding the upper limit for each mass hypothesis.
 We refer to Cowan's book equation 9.39. The upper limit at 95\% confidence
 level on the number of signal events ($\nu_{up}$) can be found as:
 \begin{equation}
-\nu_{up} = \hat{\nu}_s(M) + \delta_{\hat{\nu}_s(M)}\cdot\Phi^{-1}(0.95)
+\nu_{up} = \hat{\nu}_s + \delta_{\hat{\nu}_s}\cdot\Phi^{-1}(0.95)
 \label{eq:limitcowan}
 \end{equation}
-where $\hat{\nu}_s(M)$ is given by Eq.~\ref{eq:nuhat}, $\delta_{\hat{\nu}_s(M)}$ 
-is the error on $\hat{\nu}_s(M)$, $\Phi^{-1}$ is the inverse cumulative distribution 
+where $\hat{\nu}_s$ is given by Eq.~\ref{eq:nuhat}, $\delta_{\hat{\nu}_s}$ 
+is the error on $\hat{\nu}_s$, $\Phi^{-1}$ is the inverse cumulative distribution 
 of the Gaussian.
 
 Eq.~\ref{eq:limitcowan} {\bf holds under the assumption that the distribution of
-$\hat{\nu}_s(M)$ is Gaussian}. However $\hat{\nu}_s(M)$, as defined in
+$\hat{\nu}_s$ is Gaussian}. However $\hat{\nu}_s$, as defined in
 Eg.~\ref{eq:nuhat} comes as the difference between a random variable
 distributed according to Poisson distribution ($N_{obs}$) and a number. The
-assumption that $\hat{\nu}_s(M)$ is Gaussian is only valid in case $N_{obs}$
+assumption that $\hat{\nu}_s$ is Gaussian is only valid in case $N_{obs}$
 has a relatively large expectation value, so that the difference between
 Poisson and Gaussian distribution can be neglected.
 
-How do we estimate $\delta_{\hat{\nu}_s(M)}$? If we know the number of
+How do we estimate $\delta_{\hat{\nu}_s}$? If we know the number of
 expected background events with no error, then
-$\delta_{\hat{\nu}_s(M)}=\sqrt{N_{obs}}$, following Poisson statistics. 
+$\delta_{\hat{\nu}_s}=\sqrt{N_{obs}}$, following Poisson statistics. 
 
 However we usually have an uncertainty on the estimation of the number of
-background events. This kind of uncertainty is systematic, contrary to the
+background events $\delta_{\nu_b}$. This kind of uncertainty is systematic, contrary to the
 uncertainty on $N_{obs}$, which is statistical instead. It is not obvious how
-to combine the two uncertainties into $\delta_{\hat{\nu}_s(M)}$.
+to combine the two uncertainties into $\delta_{\hat{\nu}_s}$.
+
+In the following we will make a common choice, which consists in combining the
+two uncertainties as one would do if they were both statistical. It then
+follows that
+\begin{equation}
+\delta_{\hat{\nu}_s}=\sqrt{N_{obs}+\delta_{\nu_b}^{2}}.
+\label{eq:errorCinghiale}
+\end{equation}
+Let us discuss in some more detail the meaning of our choice of summing in
+quadrature the genuinely statistical uncertainty on $N_{obs}$ and the
+systematic uncertainty $\delta_{\nu_b}$.
+By doing this we are effectively expressing our degree of belief in our
+estimate of the background in the form of a Gaussian with average $\nu_b$ and
+standard deviation $\delta_{\nu_b}$. Indeed, if you assume that the true value
+of the expected number of background events is distributed as a Gaussian of
+standard deviation $\delta_{\nu_b}$ around the average $\nu_b$, then the
+variance of $\hat{\nu}_s$ is indeed given by Eq.~\ref{eq:errorCinghiale}.
+
+In other words we are weighting the probability that we are wrong about our
+estimate of the number of background events in a Gaussian way
+with respect to our best estimate $\delta_{\nu_b}$. It should be somewhat clear from the choice of words in
+the two past sentences that we are to some extent entering the realm of
+Bayesian probability, in that we are using a PDF, a Gaussian in this case, to
+measure how sure we are of our background estimate.
+
+It should be clear that using a Gaussian to describe our degree of belief in
+the background estimate, as an effective way of modeling the systematic
+uncertainties is not the only option. Other systematic uncertainties may be
+better modeled by different PDFs, such as Uniform, of lognormal. It is in
+general a good practice (although not always done in practice) to test the
+robustness of a result against the (somewhat arbitrary) choice of the PDF that
+models the systematic uncertainties.
+
+\section*{Exercise 3}
+{\bf Derive an upper limit on the signal strength $\mu$ using
+Eq.~\ref{eq:limitcowan}}
+Using the signal and background yields obtained from the mass dependent cuts
+of Exercise 2, the student should plot the expected and observed limit.
+
+The systematic uncertainty on the background should be taken to be a
+(reasonable) 10\% of $\nu_b$.
+
+The expected limit is the limit you expect to put in the signal background
+only hypothesis. It can be derived very simply by assuming $\hat{\nu}_s$=0.
+This however does not give you any sense of how the statistical fluctuations
+in the number of observed events may affect the limit even in the background
+only hypothesis. 
+
+In order to have such an idea the student should make several
+``toy'' experiment, i.e., they should simulate what the result of an
+experiment  could be in a background only hypothesis. In our simple case this
+boils down to throwing several random numbers according to the Poisson
+distribution around $\nu_b$. Each random extraction would yield a number
+$N_{obs}^i$. For each $N_{obs}^i$ the student should compute the upper limit
+according to Eq.~\ref{eq:limitcowan}. The expected limit can be extracted by
+taking the median of the limits obtained in all the toy extractions. Similarly
+a 1 and 2 sigma band can be extracted by taking the 2.5\% percentile
+(2$\sigma$ down), 34\% (1$\sigma$ down), 84\% (1$\sigma$ up), 97.5\%
+(2$\sigma$ up) of the distribution of expected limits from toys for each mass. 
+
+The observed limit is the limit obtained from data, using $N_obs from data$.
+
+The student should finally obtain a plot similar to the one shown in
+Fig.~\ref{fig:limitCowan}.
+\begin{figure}[!b]
+\centering
+\includegraphics[width=0.5\textwidth]{images/limitCowan.pdf}
+\caption{Expected and observed limit. The result of Exercise 3 should be
+something of this form.\label{fig:limitCowan}}
+
+\end{figure}
 
 
 \end{document}          
