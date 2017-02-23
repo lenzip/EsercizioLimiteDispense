@@ -68,8 +68,10 @@ model for the expected cross section for X.
 
 We will assume that the cross section $\sigma$ for each of the production
 channels of X scales with a common factor $\mu$ of the corresponding Higgs
-boson cross section: \begin{equation}
+boson cross section: 
+\begin{equation}
  \sigma_{X [ggF,VBF]}(M) = \mu(M)\sigma_{H [ggF,VBF]}(M)
+ \label{eq:mudef}
 \end{equation}
  where M is the mass of X, and obvious meaning of the other symbols. This is a
  reasonable assumption, verified by several new physics models.  We notice
@@ -355,8 +357,51 @@ Fig.~\ref{fig:limitCowan}.
 \includegraphics[width=0.5\textwidth]{images/limitCowan.pdf}
 \caption{Expected and observed limit. The result of Exercise 3 should be
 something of this form.\label{fig:limitCowan}}
-
 \end{figure}
 
+\section{Maximum likelihood estimator of the signal strength}
+In this paragraph we will introduce the maximum likelihood fit as a way to
+estimate the signal strength in the presence of systematic uncertainties.
+We spell out since the beginning that the systematic uncertainties will be
+included in the fitting procedure in the of parameters for which an external
+constraint is imposed in the fit. Parameters in a maximum likelihood fit which
+represent systematic uncertainties are called {\bf nuisance parameters}, to
+distinguish them from the parameters for which we do not put external
+constraints, such as the signal strength ($\mu$) in our case, which are known as {\bf
+parameters of interest (POI)}. 
 
+Let us assume that the random variable that we measure in our experiment is
+$N_{obs}$. We expect it to be Poisson-like distributed around
+$\nu_b+\mu\cdot\nu_s$, where $\nu_s$ is the number of signal events we expect
+for the signal if X is actually the SM H (remember Eq.~\ref{eq:mudef}).
+In this case the likelihood function $\mathcal{L}(\mu)$ is simply:
+\begin{equation}
+\mathcal{L}(\mu)=\frac{(\nu_b+\mu\cdot\nu_s)^{N_{obs}}}{N_{obs}!}e^{-(\nu_b+\mu\cdot\nu_s)}
+\label{eq:likelihood_no_nuisances}
+\end{equation}
+Maximizing $\mathcal{L}(\mu)$ with respect to $\mu$ gives the best fit value
+for $\mu$, $\hat{\mu}$. The result id the already known one of Eq~\ref{eq:nuhat}, 
+which we can express in terms of $\mu$ as
+\begin{equation}
+\hat{\mu} = \frac{N_{obs}-\nu_b}{\nu_s}.
+\end{equation}
+
+We can introduce our degree of belief in the knowledge of the background
+distribution in the form of a nuisance parameter with an external constraint
+in the likelihood $\mathcal{L}(\mu)$. Let us for example assume that we know
+the normalization of the background with a relative uncertainty
+$\delta_{nu_b}/\nu_b$. 
+
+We can the add to our likelihood a nuisance parameter $\mu_b$ which acts as a
+multiplier of $\nu_b$ in much the same way as $\mu$ is multiplier for the
+number of expected signal events. However we impose a (for example) Gaussian
+constraint on $\nu_b$ with standard deviation $\delta_{\nu_b}/\nu_b$. The new
+likelihood function is now function of both $\mu$ (the POI) and $\mu_b$ (a
+nuisance parameter), and reads:
+\begin{equation}
+\mathcal{L}(\mu;\mu_b)=\frac{1}{2\pi\frac{\delta_{\nu_b}}{\nu_b}}e^{-\frac{(\mu_b-1)^2}{2(\frac{\delta_{\nu_b}}{\nu_b})^2}}\times\frac{(\mu_b\cdot\nu_b+\mu\cdot\nu_s)^{N_{obs}}}{N_{obs}!}e^{-(\mu_b\cdot\nu_b+\mu\cdot\nu_s)},
+\label{eq:likelihood_nuisance}
+\end{equation}
+where the initial part before the $\times$ symbol is the Gaussian constraint
+on $\mu_b$.
 \end{document}          
