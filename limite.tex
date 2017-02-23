@@ -363,7 +363,7 @@ something of this form.\label{fig:limitCowan}}
 In this paragraph we will introduce the maximum likelihood fit as a way to
 estimate the signal strength in the presence of systematic uncertainties.
 We spell out since the beginning that the systematic uncertainties will be
-included in the fitting procedure in the of parameters for which an external
+included in the fitting procedure in the form of parameters for which an external
 constraint is imposed in the fit. Parameters in a maximum likelihood fit which
 represent systematic uncertainties are called {\bf nuisance parameters}, to
 distinguish them from the parameters for which we do not put external
@@ -373,14 +373,14 @@ parameters of interest (POI)}.
 Let us assume that the random variable that we measure in our experiment is
 $N_{obs}$. We expect it to be Poisson-like distributed around
 $\nu_b+\mu\cdot\nu_s$, where $\nu_s$ is the number of signal events we expect
-for the signal if X is actually the SM H (remember Eq.~\ref{eq:mudef}).
+for the signal, if X is actually the SM H (remember Eq.~\ref{eq:mudef}).
 In this case the likelihood function $\mathcal{L}(\mu)$ is simply:
 \begin{equation}
 \mathcal{L}(\mu)=\frac{(\nu_b+\mu\cdot\nu_s)^{N_{obs}}}{N_{obs}!}e^{-(\nu_b+\mu\cdot\nu_s)}
 \label{eq:likelihood_no_nuisances}
 \end{equation}
 Maximizing $\mathcal{L}(\mu)$ with respect to $\mu$ gives the best fit value
-for $\mu$, $\hat{\mu}$. The result id the already known one of Eq~\ref{eq:nuhat}, 
+for $\mu$, $\hat{\mu}$. The result is the already known result of Eq~\ref{eq:nuhat}, 
 which we can express in terms of $\mu$ as
 \begin{equation}
 \hat{\mu} = \frac{N_{obs}-\nu_b}{\nu_s}.
@@ -390,12 +390,13 @@ We can introduce our degree of belief in the knowledge of the background
 distribution in the form of a nuisance parameter with an external constraint
 in the likelihood $\mathcal{L}(\mu)$. Let us for example assume that we know
 the normalization of the background with a relative uncertainty
-$\delta_{nu_b}/\nu_b$. 
+$\delta_{\nu_b}/\nu_b$, and let us introduce the nuisance parameter $\mu_b$,
+which is a multiplier of $\nu_b$ in much the same way as $\mu$ is multiplier for the
+number of expected signal events. 
 
-We can the add to our likelihood a nuisance parameter $\mu_b$ which acts as a
-multiplier of $\nu_b$ in much the same way as $\mu$ is multiplier for the
-number of expected signal events. However we impose a (for example) Gaussian
-constraint on $\nu_b$ with standard deviation $\delta_{\nu_b}/\nu_b$. The new
+In order to add a constraint on $\mu_b$ in the likelihood we simply have to
+multiply the likelihood of Eq.~\ref{eq:likelihood_no_nuisances} by a Gaussian
+constraint on $\mu_b$ with standard deviation $\delta_{\nu_b}/\nu_b$. The new
 likelihood function is now function of both $\mu$ (the POI) and $\mu_b$ (a
 nuisance parameter), and reads:
 \begin{equation}
@@ -412,7 +413,7 @@ Eq.~\ref{eq:likelihood_nuisance} we are effectively fitting two parameters
 the distribution of the nuisance parameter, a Gaussian in this case.
 
 The likelihood function of Eq.~\ref{eq:likelihood_nuisance} can be easily
-extended to the case in which we our measurement consists of a vector of
+extended to the case in which our measurement consists of a vector of
 $n$ random variables $\vec{N}_{obs}=(N_{obs}^1...N_{obs}^n)$. We would like to draw the
 reader's attention on the fact that this is exactly the case we have when we measure number
 of events in a binned histograms with $n$ bins, such as in
@@ -423,7 +424,7 @@ for each of the $n$ bin.
 Similarly Eq.~\ref{eq:likelihood_nuisance} can be easily
 extended to the case in which we have more nuisances. For example, our
 background could be (and most likely will be) composed by several contributions (e.g. one for each different
-background process), each with its own normalization uncertainty. In this case one simply add each nuisance as a
+background process), each with their own normalization uncertainty. In this case one simply add each nuisance as a
 multiplicative constraint in the likelihood. Also, the functional form of each constraint could
 be different for the different constraints.
 
