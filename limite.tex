@@ -404,4 +404,29 @@ nuisance parameter), and reads:
 \end{equation}
 where the initial part before the $\times$ symbol is the Gaussian constraint
 on $\mu_b$.
+
+The reader might be surprised by the fact that by maximizing
+Eq.~\ref{eq:likelihood_nuisance} we are effectively fitting two parameters
+(the POI $\mu$ and the nuisance $\mu_b$) with a single measurement
+($N_{obs}$). One should remember, however, that the second constraint effectively comes from the assumed shape of
+the distribution of the nuisance parameter, a Gaussian in this case.
+
+The likelihood function of Eq.~\ref{eq:likelihood_nuisance} can be easily
+extended to the case in which we our measurement consists of a vector of
+$n$ random variables $\vec{N}_{obs}=(N_{obs}^1...N_{obs}^n)$. We would like to draw the
+reader's attention on the fact that this is exactly the case we have when we measure number
+of events in a binned histograms with $n$ bins, such as in
+Fig.~\ref{fig:mti}. To extend Eq.~\ref{eq:likelihood_nuisance} to handle this
+case, one simply needs to introduce a product of Poisson distributions, one
+for each of the $n$ bin. 
+
+Similarly Eq.~\ref{eq:likelihood_nuisance} can be easily
+extended to the case in which we have more nuisances. For example, our
+background could be (and most likely will be) composed by several contributions (e.g. one for each different
+background process), each with its own normalization uncertainty. In this case one simply add each nuisance as a
+multiplicative constraint in the likelihood. Also, the functional form of each constraint could
+be different for the different constraints.
+
+
+
 \end{document}          
