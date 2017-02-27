@@ -3,7 +3,7 @@
 \usepackage[english]{babel}
 \usepackage{subfigure}
 \usepackage{graphicx}
-
+\usepackage{amsmath}
 % Title Page
 \title{Upper limit for High mass X$\rightarrow$WW search}
 \author{Piergiulio Lenzi}
@@ -449,7 +449,7 @@ negative sign in front allows us to search for minima instead of maxima (for
 some reason physicists prefer minima over maxima). We then introduce
 $L(\mu;\mu_b)$ as:
 \begin{equation}
-L(\mu;\mu_b)=-log(\mathcal{L}(\mu;\mu_b)).
+L(\mu;\mu_b)=-\mathrm{ln}(\mathcal{L}(\mu;\mu_b)).
 \label{eq:nll}
 \end{equation}
 We use a single POI and a single nuisance in Eq.~\ref{eq:nll} just for
@@ -461,7 +461,7 @@ function of the stocastic variables we measure) $\lambda(\mu)$,
 called log-likelihood ratio (LLR) as
 forllows:
 \begin{equation}
-\lambda_\mu(N_{obs})=\frac{L(\mu;\hat{\hat{\mu}}_b)}{L(\hat{\mu};\hat{\mu}_b)}.
+\lambda_\mu(N_{obs})=\frac{\mathcal{L}(\mu;\hat{\hat{\mu}}_b)}{\mathcal{L}(\hat{\mu};\hat{\mu}_b)}.
 \label{eq:llr}
 \end{equation}
 Some explanation on the symbols is required:  {\bf $\hat{\mu}$ is the best fit of
@@ -484,8 +484,43 @@ task of either measuring the significance of a possible signal, or setting an
 upper limit.
 
 \subsection{LLR for significance estimation}
+We can use a test statistic that is based on the LLR to test the significance
+of a $\hat{\mu}>0$ result from the best fit of our data. The test statistics
+that we are going to use is $q_{0}$ defined as follows:
+\begin{equation}
+q_0=\begin{cases}
+-2\mathrm{ln}\lambda_0(N_{obs}) & \hat{\mu}\geq0 \\
+0 & \hat{\mu}<0
+\end{cases}
+\label{eq:teststat_signif}
+\end{equation}
+What does this mean in practice? First of all, we are testing against the
+background only hypothesis, so we use the LLR for the case $\mu=0$,
+$\lambda_0(N_{obs})$ (as we were mentioning before, we can compute the LLR for
+any choice of $\mu$).
+Then, since we regard only upward fluctuations of the data as possible
+signals, we distinguish the cases in which the best fit value for the signal
+strength $\hat{\mu}$ is larger (possible signal) or smaller (background
+underfluctuation) than 0. Finally, why the logarithm, the 2 and the minus
+sign. The logarithm and the minus sign have the purpose of simplifying the
+computation and turning a search for maxima into a search for minima,
+similarly to Eq.~\ref{eq:nll}. This, together with the factor 2 allows for
+nice ``asymptotic'' properties of $q_0$. In particular, for large samples, the
+distribution of $q_0$ is Gaussian, with average 0 and standard deviation 1.
+
+This means that, given the value of $q_0$ for our dataset, one can simply
+compute the p-value as:
+\begin{equation}
+p=1-\Phi(\sqrt{q_0}),
+\end{equation}
+where $\Phi$ is the cumulative distribution of a Gaussian with average 0 and
+standard deviation 1. Similarly the ``number of sigmas'' of the signal is 
+\begin{equation}
+Z=\sqrt{q_0}
+\end{equation}
 
 \section*{Exercise 4}
+
 
 {\bf Observed significance with LLR}
 
