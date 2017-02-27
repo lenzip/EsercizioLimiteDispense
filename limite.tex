@@ -437,6 +437,64 @@ POIs, ranging from 1 to 10 depending on the particular quantity that is
 measured, and
 several tens of nuisance parameters.
 
+\section{The profile log likelihood ratio (LLR) statistics}
+When making minimizations or maximizations, derivatives are involved. The derivative of a
+product (Eq.~\ref{eq:likelihood_nuisance}) can be cumbersome to compute.
+We notice that any monotonic function of Eq.~\ref{eq:likelihood_nuisance} would show
+minima and maxima in the same spots of the dependand variables as Eq.~\ref{eq:likelihood_nuisance}. We then can
+choose to use the negative logarithm of  the likelihood function (negative
+log-likelihood, NLL). The logarithm turns the product into a sum (easier to
+derive), and the
+negative sign in front allows us to search for minima instead of maxima (for
+some reason physicists prefer minima over maxima). We then introduce
+$L(\mu;\mu_b)$ as:
+\begin{equation}
+L(\mu;\mu_b)=-log(\mathcal{L}(\mu;\mu_b)).
+\label{eq:nll}
+\end{equation}
+We use a single POI and a single nuisance in Eq.~\ref{eq:nll} just for
+simplicity. The generalization to multiple POIs and nuisances is
+straightforward.
+
+Based on $L(\mu;\mu_b)$ we can construct a {\bf test statistic} (i.e. a
+function of the stocastic variables we measure) $\lambda(\mu)$,
+called log-likelihood ratio (LLR) as
+forllows:
+\begin{equation}
+\lambda_\mu(N_{obs})=\frac{L(\mu;\hat{\hat{\mu}}_b)}{L(\hat{\mu};\hat{\mu}_b)}.
+\label{eq:llr}
+\end{equation}
+Some explanation on the symbols is required:  {\bf $\hat{\mu}$ is the best fit of
+the signal strength $\mu$}, our POI. Similarly, {\bf $\hat{\mu}_b$ is the best fit
+of the nuisance $\mu_b$}. In other words, given our measurement of $N_{obs}$,
+the ($\hat{\mu}$,$\hat{\mu}_b$) pair is the
+minimum of the NLL function \ref{eq:nll}, or, equivalently, the maximum of the
+likelihood \ref{eq:likelihood_nuisance}. Suppose now that we choose a
+particular value of the POI, a value of our choice and we call it $\mu$: then
+{\bf $\hat{\hat{\mu}}_b$ is the value of the nuisance $\mu_b$ which minimizes the
+NLL function \ref{eq:nll} for our chosen value of $\mu$}.
+
+The reason why we go through the burden of constructing $\lambda_\mu(N_{obs})$
+is simply that, by the Neyman-Pearson lemma, this test statistics gives the
+best power to discriminate the background only and the signal + background
+hypotheses.
+
+Let us now see how we can use the LLR, or small modifications of it, for the
+task of either measuring the significance of a possible signal, or setting an
+upper limit.
+
+\subsection{LLR for significance estimation}
+
+\section*{Exercise 4}
+
+{\bf Observed significance with LLR}
+
+\subsection{LLR for upper limit}
+
+\section*{Exercise 5}
+
+{\bf Upper limit with LLR}
+
 
 
 \end{document}          
