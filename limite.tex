@@ -519,8 +519,72 @@ standard deviation 1. Similarly the ``number of sigmas'' of the signal is
 Z=\sqrt{q_0}
 \end{equation}
 
-\section*{Exercise 4}
+\subsection{Setting up a model in RooFit}
+Based on out previous discussion, it is clear that the first step to use the
+LLR as a means to measure the significance of a signal is to setup a maximum
+likelihood fit of the POI with constraints on the nuisances.
 
+Stated differently, we want to setup a parametric model which describes our
+data. The parameters of the model will be the POI and the nuisances. This can
+be achieved in a relatively easy way in \verb+RooFit+. In order to make the
+code more generic, we will drop the simplification of the single counting
+analysis, and we will assume that our measurement consists of a set of event counts,
+$\vec{N}_{obs}=(N_{obs}^1...N_{obs}^n)$, which is represented practically by a
+histogram, a \verb+TH1+ in \verb+ROOT+ language. Of course, the simple
+counting experiment can be simply modeled in this framework as a single-bin
+histogram.
+
+The following is a guide describing the \verb+RooFit+ code used to implement the ML
+fit we are interested in. The code implementing the fit is in the
+\verb+HWWWorkspace.C+ file.
+
+Let us call \verb+h_data+ a histogram of event counts in a certain variable
+($m_{T,i}$ for example) after selection. Our task is to write a parametric
+model that describes that histogram as the sum of different signal and
+background components. 
+
+For the signal and each background we are able to derive from simulation the
+expected shape and normalization in the relevant variable in the form of a
+histogram. We can thus derive
+from simulation the \verb+TH1s+ represented by the following variables:
+\verb+ww+, \verb+top+, \verb+dytt+, \verb+vv+, \verb+sig+. The variable names
+correspond to the process that is represented by each variable.
+
+From each of those variable we derive a binned PDF (represented by instances
+of class \verb+RooHistPdf+). The variable names of these PDFs in
+\verb+HWWWorkspace.C+ are: \verb+pdf_ww+, \verb+pdf_top+, \verb+pdf_dytt+,
+\verb+pdf_vv+, \verb+pdf_s+, again with hopefully obvious meaning of the
+names.
+
+We also single out variables (instances of class \verb+RooRealVar+)
+representing the normalization of each process (\verb+nu_ww+, \verb+nu_top+,
+\verb+nu_dytt+, \verb+nu_vv+, \verb+nu_s+).
+Also, and most importantly, we introduce instances of class \verb+RooRealVar+
+to describe the POI (\verb+mu+) and a nuisance representing a multiplier for
+each background process (\verb+mu_ww+, \verb+mu_top+,
+\verb+mu_dytt+, \verb+mu_vv+).
+We describe introduce formulas for the normalization of each signal and
+background, so that, for example, the normalization of the WW background is
+represented by variable \verb+norm_ww+ which is the product
+\verb+mu_ww*nu_ww+. Similarly for the signal and the other backgrounds.
+
+Finally, the model that we will use to fit the data is represented by the
+variable \verb+model+ (an instance of class \verb!RooAddPdf!), which effectively represents the expression:
+
+\verb!model=norm_s*pdf_s+! 
+\verb!norm_ww*pdf_ww+! 
+\verb!norm_top*pdf_top+!\\ 
+\verb!norm_dytt*pdf_dytt+! 
+\verb!norm_vv*pdf_vv!.
+
+In the file \verb+HWWWorkspace.C+ we also prepare the nuiscne constraints, to
+be used later. These have the form of Gaussian distribution of the \verb+mu_+
+parameters.
+
+Everything is saved in an instance of \verb+RooWorkspace+ and returned to the
+calling code, for later use.
+
+\section*{Exercise 4}
 
 {\bf Observed significance with LLR}
 
