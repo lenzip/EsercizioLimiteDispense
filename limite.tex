@@ -577,7 +577,7 @@ variable \verb+model+ (an instance of class \verb!RooAddPdf!), which effectively
 \verb!norm_dytt*pdf_dytt+! 
 \verb!norm_vv*pdf_vv!.
 
-In the file \verb+HWWWorkspace.C+ we also prepare the nuiscne constraints, to
+In the file \verb+HWWWorkspace.C+ we also prepare the nuisance constraints, to
 be used later. These have the form of Gaussian distribution of the \verb+mu_+
 parameters.
 
@@ -585,14 +585,46 @@ Everything is saved in an instance of \verb+RooWorkspace+ and returned to the
 calling code, for later use.
 
 \section*{Exercise 4}
-
 {\bf Observed significance with LLR}
 
-\subsection{LLR for upper limit}
+Using the workspace obtained with \verb+HWWWorkspace.C+ it is relatively easy
+to compute the significance of the observed data.
+Given the \verb+model+ we can construct the negative log likelihood (NLL) using an expression of
+the form:
+
+\verb+RooAbsReal* nll=model->createNLL(data, ExternalConstraints(*constraints) )+
+where \verb+data+ is a \verb!RooDataHist! representing the event counts in data
+and \verb+constraints+ is the set of Gaussian constraints on the nuisance.
+
+Starting from the variable \verb+nll+ we can then construct the LLR with the
+expression:
+
+\verb+RooAbsReal* profileLogLikelihood = nll->createProfile(*mu) ;+
+and evaluate it for a value equal to 0 for the variable \verb+mu+, so that we
+can construct the test statistics of Eq.~\ref{eq:teststat_signif}.
+
 
 \section*{Exercise 5}
-
 {\bf Upper limit with LLR}
+
+One can use the LLR also to set an upper limit in a way that is similar to the
+graphical estimation of errors for a ML estimator. One simply draws the LLR as
+a function of the parameter of interest and search for the crossing at +2.
+This will give the 95\% CL upper limit on the POI.
+With the technicalities introduced before, the student should be able to carry
+out this calculation.
+
+Fig.~\ref{fig:profile} shows the shape of the LLR for the 700 GeV mass point, 
+as a function of the POI for the real data (blue) and for the expectation, obtained assuming we observe
+exactly the expected background. 
+
+\begin{figure}[!b]
+\centering
+\includegraphics[width=0.5\textwidth]{images/limitLLR.pdf}
+\caption{Log likelihood ratio profile for the signal strength $\mu$ for the
+data corresponding to the 700 GeV mass point. The graphical method for limit
+setting is shown.\label{fig:profile}}
+\end{figure}
 
 
 
