@@ -34,7 +34,7 @@ mass particle, named X. {\bf We expect this particle to be a heavy variant of
 the Standard Model Higgs boson}.  For this reason we hypothesize that X shares
 with H the production mechanism. This is a reasonable assumption that is
 verified in several new physics models.
-In particular we assumes that X can be produced via two main production
+In particular we assume that X can be produced via two main production
 mechanisms, called gluon fusion (ggF) and vector boson fusion (VBF),
 represented by the diagrams in Fig.~\ref{fig:prod}.  \begin{figure}
  \centering
@@ -43,15 +43,17 @@ represented by the diagrams in Fig.~\ref{fig:prod}.  \begin{figure}
  \caption{Feynmann diagrams of the two main production mechanisms for X.\label{fig:prod}}
 \end{figure}
 
-The details and precise meaning of the Feynman dagrams of Fig.~\ref{fig:prod}
+The details and precise meaning of the Feynman diagrams of Fig.~\ref{fig:prod}
 are not relevant for this exercise, the relevant piece of information is that
 two mechanisms are available and that they are marked by a substantial
 difference: {\bf the ggF shows no other particles in the final state beyond X,
 the VBF has two quarks in addition to the X in the final state}.
-Although it should be noted that a precise calculation shows that additianal
+Although it should be noted that a precise calculation shows that additional
 particles in the form of hadronic jets can also arise in ggF, it remains true
 that events arising from the two mechanisms are different when it comes to the
-number of jets produced in addition to the X particle.
+number of jets produced in addition to the X particle: most of ggF events have
+no high pT jets, while most of VBF events have two well separated high pT jets
+in the final state.
 
 The production cross section for the Higgs boson as a function of its mass is
 reported in Fig.~\ref{fig:production}. Although we now know the mass of the
@@ -101,13 +103,12 @@ X$\rightarrow$WW. The W bosons are themselves unstable. 30\% of the times
 bosons. The reason of this choice will become clearer when we discuss
 backgrounds, but let us mention already that requiring leptons in the final
 state allows a dramatic reduction of background processes. 
-To summarise, {\bf we search for the H$\rightarrow$WW$\rightarrow{}2l2\nu$ decay
+To summarise, {\bf we search for the X$\rightarrow$WW$\rightarrow{}2l2\nu$ decay
 chain}.
 
-We will use data collected by the CMS experiment in the 2015 data taking at
-the LHC. These data correspond to an integrated luminosity of 2.3~fb$^{-1}$.
-We will base our analysis on data reconstructed with the official CMS software
-and Simulations for both the signal and the background processes. These data
+We will use data collected by the CMS experiment in the 2015 run of the at LHC. These data correspond to an integrated luminosity of 2.3~fb$^{-1}$.
+We will base our analysis on data reconstructed with the standard CMS software
+and simulations for both the signal and the background processes. These data
 come in the form of ROOT trees.
 
 For each event the tree stores several event variables, in particular:
@@ -149,7 +150,8 @@ Other subleading sources of background originate from processes in which at
 least one of the leptons is not a real lepton, but is identified as such by the
 reconstruction algorithms. The control of these backgrounds is a crucial part of the analysis,
 but is beyond the scope of this exercise. The cuts to be applied will be
-provided by the teachers.
+provided by the teachers. These cuts are implemented in the provided file
+\verb+HWWYields.C+.
 
 \subsection{Main discriminating variable}
 After the selection cuts mentioned above we end up
@@ -229,9 +231,9 @@ single experiment, is
 \hat{\nu}_s=N_{obs}-\nu_b
 \label{eq:nuhat}
 \end{equation}
-where the dependency on the mass hypothesis is there to remind us that the
-analysis cuts can be different depending on the mass of the signal we search
-for.
+%where the dependency on the mass hypothesis is there to remind us that the
+%analysis cuts can be different depending on the mass of the signal we search
+%for.
 
 In order to understand whether the obtained value of $\hat{\nu}_s$ is
 significantly different from 0 we should compare it with the statistical
@@ -239,7 +241,7 @@ fluctuation of the expected background. Only if $\hat{\nu}_s$ is larger
 than several standard deviations (5) of the expected background we can claim a
 discovery.
 
-Following this discussion we are left with an open question: should we ad any
+Following this discussion we are left with an open question: should we add any
 other selection cuts to our selection to improve the analysis sensitivity to a
 signal?
 
