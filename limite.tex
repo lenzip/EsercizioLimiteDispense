@@ -4,6 +4,29 @@
 \usepackage{subfigure}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 % Title Page
 \title{Upper limit for High mass X$\rightarrow$WW search}
 \author{Piergiulio Lenzi}
@@ -25,11 +48,12 @@ We will search for a new signal in the $WW\rightarrow{}2l2\nu$ final state.
 This channel is also a decay channel for the Standard Model Higgs boson (H).
 We will however search for an additional particle, named X in the following,
 that is supposed to be heavier than H. 
-We will scan a wide range of masses for X and, if we do not find a compelling
-evidence for a signal, we will set an upper limit on the  cross section of X.
+We will scan a wide range of masses for X and we will set an upper limit on
+the  cross section of X, as well as compute the significance of any excess we
+may observe.
 
 \section{The physics case}
-In this experience we will search for the existence of a new hypothetical high
+In this exercise we will search for the existence of a new hypothetical high
 mass particle, named X. {\bf We expect this particle to be a heavy variant of
 the Standard Model Higgs boson}.  For this reason we hypothesize that X shares
 with H the production mechanism. This is a reasonable assumption that is
@@ -49,7 +73,7 @@ two mechanisms are available and that they are marked by a substantial
 difference: {\bf the ggF shows no other particles in the final state beyond X,
 the VBF has two quarks in addition to the X in the final state}.
 Although it should be noted that a precise calculation shows that additional
-particles in the form of hadronic jets can also arise in ggF, it remains true
+particles, in the form of hadronic jets, can also arise in ggF, it remains true
 that events arising from the two mechanisms are different when it comes to the
 number of jets produced in addition to the X particle: most of ggF events have
 no high pT jets, while most of VBF events have two well separated high pT jets
@@ -259,107 +283,107 @@ $m_{T,i}>m_{T,i}^{cut}$ the ratio of expected number of signal events
 $\nu_s$ and the statistical fluctuation of background events
 $\sqrt{\nu_b}$ ($\nu_s/\sqrt{\nu_b}$) is maximised.
 
-\section{Upper limit with approximate formulae}
-Upon completion of Exercise 2 the student has found the optimal value in
-$m_{T,i}$ where one should cup in order to find a possible signal. The optimal
-position of the cut depends on the mass of the hypothesized signal.
-
-We now aim at finding the upper limit for each mass hypothesis.
-We refer to Cowan's book equation 9.39. The upper limit at 95\% confidence
-level on the number of signal events ($\nu_{up}$) can be found as:
-\begin{equation}
-\nu_{up} = \hat{\nu}_s + \delta_{\hat{\nu}_s}\cdot\Phi^{-1}(0.95)
-\label{eq:limitcowan}
-\end{equation}
-where $\hat{\nu}_s$ is given by Eq.~\ref{eq:nuhat}, $\delta_{\hat{\nu}_s}$ 
-is the error on $\hat{\nu}_s$, $\Phi^{-1}$ is the inverse cumulative distribution 
-of the Gaussian.
-
-Eq.~\ref{eq:limitcowan} {\bf holds under the assumption that the distribution of
-$\hat{\nu}_s$ is Gaussian}. However $\hat{\nu}_s$, as defined in
-Eg.~\ref{eq:nuhat} comes as the difference between a random variable
-distributed according to Poisson distribution ($N_{obs}$) and a number. The
-assumption that $\hat{\nu}_s$ is Gaussian is only valid in case $N_{obs}$
-has a relatively large expectation value, so that the difference between
-Poisson and Gaussian distribution can be neglected.
-
-How do we estimate $\delta_{\hat{\nu}_s}$? If we know the number of
-expected background events with no error, then
-$\delta_{\hat{\nu}_s}=\sqrt{N_{obs}}$, following Poisson statistics. 
-
-However we usually have an uncertainty on the estimation of the number of
-background events $\delta_{\nu_b}$. This kind of uncertainty is systematic, contrary to the
-uncertainty on $N_{obs}$, which is statistical instead. It is not obvious how
-to combine the two uncertainties into $\delta_{\hat{\nu}_s}$.
-
-In the following we will make a common choice, which consists in combining the
-two uncertainties as one would do if they were both statistical. It then
-follows that
-\begin{equation}
-\delta_{\hat{\nu}_s}=\sqrt{N_{obs}+\delta_{\nu_b}^{2}}.
-\label{eq:errorCinghiale}
-\end{equation}
-Let us discuss in some more detail the meaning of our choice of summing in
-quadrature the genuinely statistical uncertainty on $N_{obs}$ and the
-systematic uncertainty $\delta_{\nu_b}$.
-By doing this we are effectively expressing our degree of belief in our
-estimate of the background in the form of a Gaussian with average $\nu_b$ and
-standard deviation $\delta_{\nu_b}$. Indeed, if you assume that the true value
-of the expected number of background events is distributed as a Gaussian of
-standard deviation $\delta_{\nu_b}$ around the average $\nu_b$, then the
-variance of $\hat{\nu}_s$ is indeed given by Eq.~\ref{eq:errorCinghiale}.
-
-In other words we are weighting the probability that we are wrong about our
-estimate of the number of background events in a Gaussian way
-with respect to our best estimate $\delta_{\nu_b}$. It should be somewhat clear from the choice of words in
-the two past sentences that we are to some extent entering the realm of
-Bayesian probability, in that we are using a PDF, a Gaussian in this case, to
-measure how sure we are of our background estimate.
-
-It should be clear that using a Gaussian to describe our degree of belief in
-the background estimate, as an effective way of modeling the systematic
-uncertainties is not the only option. Other systematic uncertainties may be
-better modeled by different PDFs, such as Uniform, of lognormal. It is in
-general a good practice (although not always done in practice) to test the
-robustness of a result against the (somewhat arbitrary) choice of the PDF that
-models the systematic uncertainties.
-
-\section*{Exercise 3}
-{\bf Derive an upper limit on the signal strength $\mu$ using
-Eq.~\ref{eq:limitcowan}}
-
-Using the signal and background yields obtained from the mass dependent cuts
-of Exercise 2, the student should plot the expected and observed limit.
-
-The systematic uncertainty on the background should be taken to be a
-(reasonable) 10\% of $\nu_b$.
-
-The {\bf expected limit is the limit you expect to put in the background
-only hypothesis}. It can be derived very simply by assuming $\hat{\nu}_s$=0.
-This however does not give you any sense of how the statistical fluctuations
-in the number of observed events may affect the limit. 
-
-In order to have such an idea the student should make several
-``toy'' experiment, i.e. they should simulate what the result of an
-experiment  could be in a background only hypothesis. In our simple case this
-boils down to throwing several random numbers according to the Poisson
-distribution around $\nu_b$. Each random extraction $i$ would yield a number
-$N_{obs}^i$. For each $N_{obs}^i$ the student should compute the upper limit
-according to Eq.~\ref{eq:limitcowan}. The expected limit can be extracted by
-taking the median of the limits obtained in all the toy extractions. Similarly
-a 1 and 2 sigma band can be extracted by taking the 2.5\% percentile
-(2$\sigma$ down), 34\% (1$\sigma$ down), 84\% (1$\sigma$ up), 97.5\%
-(2$\sigma$ up) of the distribution of expected limits from toys for each mass. 
-
-The observed limit is the limit obtained from data, using $N_{obs}$ from data.
-The student should finally obtain a plot similar to the one shown in
-Fig.~\ref{fig:limitCowan}.
-\begin{figure}[!b]
-\centering
-\includegraphics[width=0.5\textwidth]{images/limitCowan.pdf}
-\caption{Expected and observed limit. The result of Exercise 3 should be
-something of this form.\label{fig:limitCowan}}
-\end{figure}
+%\section{Upper limit with approximate formulae}
+%Upon completion of Exercise 2 the student has found the optimal value in
+%$m_{T,i}$ where one should cup in order to find a possible signal. The optimal
+%position of the cut depends on the mass of the hypothesized signal.
+%
+%We now aim at finding the upper limit for each mass hypothesis.
+%We refer to Cowan's book equation 9.39. The upper limit at 95\% confidence
+%level on the number of signal events ($\nu_{up}$) can be found as:
+%\begin{equation}
+%\nu_{up} = \hat{\nu}_s + \delta_{\hat{\nu}_s}\cdot\Phi^{-1}(0.95)
+%\label{eq:limitcowan}
+%\end{equation}
+%where $\hat{\nu}_s$ is given by Eq.~\ref{eq:nuhat}, $\delta_{\hat{\nu}_s}$ 
+%is the error on $\hat{\nu}_s$, $\Phi^{-1}$ is the inverse cumulative distribution 
+%of the Gaussian.
+%
+%Eq.~\ref{eq:limitcowan} {\bf holds under the assumption that the distribution of
+%$\hat{\nu}_s$ is Gaussian}. However $\hat{\nu}_s$, as defined in
+%Eg.~\ref{eq:nuhat} comes as the difference between a random variable
+%distributed according to Poisson distribution ($N_{obs}$) and a number. The
+%assumption that $\hat{\nu}_s$ is Gaussian is only valid in case $N_{obs}$
+%has a relatively large expectation value, so that the difference between
+%Poisson and Gaussian distribution can be neglected.
+%
+%How do we estimate $\delta_{\hat{\nu}_s}$? If we know the number of
+%expected background events with no error, then
+%$\delta_{\hat{\nu}_s}=\sqrt{N_{obs}}$, following Poisson statistics. 
+%
+%However we usually have an uncertainty on the estimation of the number of
+%background events $\delta_{\nu_b}$. This kind of uncertainty is systematic, contrary to the
+%uncertainty on $N_{obs}$, which is statistical instead. It is not obvious how
+%to combine the two uncertainties into $\delta_{\hat{\nu}_s}$.
+%
+%In the following we will make a common choice, which consists in combining the
+%two uncertainties as one would do if they were both statistical. It then
+%follows that
+%\begin{equation}
+%\delta_{\hat{\nu}_s}=\sqrt{N_{obs}+\delta_{\nu_b}^{2}}.
+%\label{eq:errorCinghiale}
+%\end{equation}
+%Let us discuss in some more detail the meaning of our choice of summing in
+%quadrature the genuinely statistical uncertainty on $N_{obs}$ and the
+%systematic uncertainty $\delta_{\nu_b}$.
+%By doing this we are effectively expressing our degree of belief in our
+%estimate of the background in the form of a Gaussian with average $\nu_b$ and
+%standard deviation $\delta_{\nu_b}$. Indeed, if you assume that the true value
+%of the expected number of background events is distributed as a Gaussian of
+%standard deviation $\delta_{\nu_b}$ around the average $\nu_b$, then the
+%variance of $\hat{\nu}_s$ is indeed given by Eq.~\ref{eq:errorCinghiale}.
+%
+%In other words we are weighting the probability that we are wrong about our
+%estimate of the number of background events in a Gaussian way
+%with respect to our best estimate $\delta_{\nu_b}$. It should be somewhat clear from the choice of words in
+%the two past sentences that we are to some extent entering the realm of
+%Bayesian probability, in that we are using a PDF, a Gaussian in this case, to
+%measure how sure we are of our background estimate.
+%
+%It should be clear that using a Gaussian to describe our degree of belief in
+%the background estimate, as an effective way of modeling the systematic
+%uncertainties is not the only option. Other systematic uncertainties may be
+%better modeled by different PDFs, such as Uniform, of lognormal. It is in
+%general a good practice (although not always done in practice) to test the
+%robustness of a result against the (somewhat arbitrary) choice of the PDF that
+%models the systematic uncertainties.
+%
+%\section*{Exercise 3}
+%{\bf Derive an upper limit on the signal strength $\mu$ using
+%Eq.~\ref{eq:limitcowan}}
+%
+%Using the signal and background yields obtained from the mass dependent cuts
+%of Exercise 2, the student should plot the expected and observed limit.
+%
+%The systematic uncertainty on the background should be taken to be a
+%(reasonable) 10\% of $\nu_b$.
+%
+%The {\bf expected limit is the limit you expect to put in the background
+%only hypothesis}. It can be derived very simply by assuming $\hat{\nu}_s$=0.
+%This however does not give you any sense of how the statistical fluctuations
+%in the number of observed events may affect the limit. 
+%
+%In order to have such an idea the student should make several
+%``toy'' experiment, i.e. they should simulate what the result of an
+%experiment  could be in a background only hypothesis. In our simple case this
+%boils down to throwing several random numbers according to the Poisson
+%distribution around $\nu_b$. Each random extraction $i$ would yield a number
+%$N_{obs}^i$. For each $N_{obs}^i$ the student should compute the upper limit
+%according to Eq.~\ref{eq:limitcowan}. The expected limit can be extracted by
+%taking the median of the limits obtained in all the toy extractions. Similarly
+%a 1 and 2 sigma band can be extracted by taking the 2.5\% percentile
+%(2$\sigma$ down), 34\% (1$\sigma$ down), 84\% (1$\sigma$ up), 97.5\%
+%(2$\sigma$ up) of the distribution of expected limits from toys for each mass. 
+%
+%The observed limit is the limit obtained from data, using $N_{obs}$ from data.
+%The student should finally obtain a plot similar to the one shown in
+%Fig.~\ref{fig:limitCowan}.
+%\begin{figure}[!b]
+%\centering
+%\includegraphics[width=0.5\textwidth]{images/limitCowan.pdf}
+%\caption{Expected and observed limit. The result of Exercise 3 should be
+%something of this form.\label{fig:limitCowan}}
+%\end{figure}
 
 \section{Maximum likelihood estimator of the signal strength}
 In this paragraph we will introduce the maximum likelihood fit as a way to
@@ -439,28 +463,10 @@ POIs, ranging from 1 to 10 depending on the particular quantity that is
 measured, and
 several tens of nuisance parameters.
 
-\section{The profile log likelihood ratio (LLR) statistics}
-When making minimizations or maximizations, derivatives are involved. The derivative of a
-product (Eq.~\ref{eq:likelihood_nuisance}) can be cumbersome to compute.
-We notice that any monotonic function of Eq.~\ref{eq:likelihood_nuisance} would show
-minima and maxima in the same spots of the dependand variables as Eq.~\ref{eq:likelihood_nuisance}. We then can
-choose to use the negative logarithm of  the likelihood function (negative
-log-likelihood, NLL). The logarithm turns the product into a sum (easier to
-derive), and the
-negative sign in front allows us to search for minima instead of maxima (for
-some reason physicists prefer minima over maxima). We then introduce
-$L(\mu;\mu_b)$ as:
-\begin{equation}
-L(\mu;\mu_b)=-\mathrm{ln}(\mathcal{L}(\mu;\mu_b)).
-\label{eq:nll}
-\end{equation}
-We use a single POI and a single nuisance in Eq.~\ref{eq:nll} just for
-simplicity. The generalization to multiple POIs and nuisances is
-straightforward.
-
-Based on $L(\mu;\mu_b)$ we can construct a {\bf test statistic} (i.e. a
+\section{The profile likelihood (PL) statistics}
+Based on $\mathcal{L}(\mu;\mu_b)$ we can construct a {\bf test statistic} (i.e. a
 function of the stocastic variables we measure) $\lambda(\mu)$,
-called log-likelihood ratio (LLR) as
+called profile likelihood ratio (PL) as
 forllows:
 \begin{equation}
 \lambda_\mu(N_{obs})=\frac{\mathcal{L}(\mu;\hat{\hat{\mu}}_b)}{\mathcal{L}(\hat{\mu};\hat{\mu}_b)}.
@@ -470,23 +476,33 @@ Some explanation on the symbols is required:  {\bf $\hat{\mu}$ is the best fit o
 the signal strength $\mu$}, our POI. Similarly, {\bf $\hat{\mu}_b$ is the best fit
 of the nuisance $\mu_b$}. In other words, given our measurement of $N_{obs}$,
 the ($\hat{\mu}$,$\hat{\mu}_b$) pair is the
-minimum of the NLL function \ref{eq:nll}, or, equivalently, the maximum of the
+maximum of the
 likelihood \ref{eq:likelihood_nuisance}. Suppose now that we choose a
 particular value of the POI, a value of our choice and we call it $\mu$: then
 {\bf $\hat{\hat{\mu}}_b$ is the value of the nuisance $\mu_b$ which minimizes the
 NLL function \ref{eq:nll} for our chosen value of $\mu$}.
 
 The reason why we go through the burden of constructing $\lambda_\mu(N_{obs})$
-is simply that, by the Neyman-Pearson lemma, this test statistics gives the
-best power to discriminate the background only and the signal + background
-hypotheses.
-
-Let us now see how we can use the LLR, or small modifications of it, for the
+is two-fold: 
+\begin{enumerate}
+\item by the Neyman-Pearson lemma, this test statistics gives the
+best power to discriminate between the hypotheses $\mu$ and $\hat{\mu}$. 
+\item by the Wilks theorem, the quantity $-2log(\lambda_\mu)$ is asymptotically
+distributed as a $\chi^2$ with 1 degree of freedom.
+\end{enumerate}
+The fact that $-2log(\lambda_\mu)$ is distributed as a $\chi^2$ with 1 degree
+of freedom allows for the determination of the confidence interval on $\mu$
+with the graphyical method, finding the crossings at +1, and also make it easy
+to compute the p-value.
+Let us now see how we can use the PL, or small modifications of it, for the
 task of either measuring the significance of a possible signal, or setting an
 upper limit.
 
-\subsection{LLR for significance estimation}
-We can use a test statistic that is based on the LLR to test the significance
+The PL test statistic can be extended in a straightforward way to more than
+one measurement, and to many nuisance parameters.
+
+\subsection{PL for significance estimation}
+We can use a test statistic that is based on the PL to test the significance
 of a $\hat{\mu}>0$ result from the best fit of our data. The test statistics
 that we are going to use is $q_{0}$ defined as follows:
 \begin{equation}
@@ -497,18 +513,16 @@ q_0=\begin{cases}
 \label{eq:teststat_signif}
 \end{equation}
 What does this mean in practice? First of all, we are testing against the
-background only hypothesis, so we use the LLR for the case $\mu=0$,
-$\lambda_0(N_{obs})$ (as we were mentioning before, we can compute the LLR for
+background only hypothesis, so we use the PL for the case $\mu=0$,
+$\lambda_0(N_{obs})$ (as we were mentioning before, we can compute the PL for
 any choice of $\mu$).
 Then, since we regard only upward fluctuations of the data as possible
 signals, we distinguish the cases in which the best fit value for the signal
 strength $\hat{\mu}$ is larger (possible signal) or smaller (background
-underfluctuation) than 0. Finally, why the logarithm, the 2 and the minus
-sign. The logarithm and the minus sign have the purpose of simplifying the
-computation and turning a search for maxima into a search for minima,
-similarly to Eq.~\ref{eq:nll}. This, together with the factor 2 allows for
-nice ``asymptotic'' properties of $q_0$. In particular, for large samples, the
-distribution of $q_0$ is a $\chi{}^2$ with one degree of freedom.
+underfluctuation) than 0. 
+As mentioned above, by the Wilks theorem, {\bf $q_0$ is distributed
+asymptotically as a $\chi^2$ with 1 degree of freedom in the background only
+hypothesis.} 
 
 This means that, given the value of $q_0$ for our dataset, one can simply
 compute the p-value as:
@@ -521,9 +535,59 @@ standard deviation 1. Similarly the ``number of sigmas'' of the signal is
 Z=\sqrt{q_0}
 \end{equation}
 
+\subsection{PL for upper limit determination}
+We can use a test statistics based on PL, introduced by Feldmann and Cousins, to set an
+upper limit on out parameter of interest $\mu$.
+The test statistics
+that we are going to use is $q_{\mu}$ is defined as follows:
+\begin{equation}
+q_{\mu}=\begin{cases}
+-2\mathrm{ln}\frac{\mathcal{L}(\mu;\hat{\hat{\mu}}_b)}{\mathcal{L}(\hat{\mu};\hat{\mu}_b)} & \hat{\mu}\geq0 \\
+-2\mathrm{ln}\frac{\mathcal{L}(\mu;\hat{\hat{\mu}}_b)}{\mathcal{L}(0;\hat{\mu}_b)} & \hat{\mu}<0
+\end{cases}
+\label{eq:teststat_limit}
+\end{equation}
+{\bf This test statistics is distributed
+asymptotically as a $\chi^2$ with 1 degree of freedom in the $\mu$ hypothesis.}
+This means that if the signal exists and its signal strength is $\mu$,
+$q_{\mu}$ is distributed as a $\chi^2$ with 1 degree of freedom. We can then
+use this fact to compute the p-value of the $\mu$ hypothesis in the asymptotic
+approximation. As for the significance $p=1-\Phi(\sqrt{q_{\mu}})$. 
+The $\mu$ hypothesis is excluded at $1-\alpha$ CL if $p<\alpha$.
+
+
+\subsection{Brazilian plots}
+Exclusion limits are often shown in the form of what has become known as the
+Brazilian plot, due to the choice of colors. An example is shown in
+\ref{fig:limit}. 
+\begin{figure}[!b]
+\centering
+\includegraphics[width=0.5\textwidth]{images/limit.png}
+\caption{Expected and observed limit. The result of Exercise 3 should be
+something of this form.\label{fig:limit}}
+\end{figure}
+
+The {\bf expected limit is the limit you expect to put in the background
+only hypothesis}. It can be derived assuming you observe data that are exactly
+equal to the sum of your background contributions. Such a dataset, in which one
+assumes to observe exactly the expected background, is also called
+background-only Asimov dataset. 
+This however does not give you any sense of how the statistical fluctuations
+in the number of observed events may affect the limit even if the background
+only hypothesis is actually true. 
+
+In order to have such an idea one can make several
+``toy'' experiment, i.e. simulate what the result of an
+experiment  could be in a background only hypothesis. For each random
+extraction, one can compute the limit. The  1 and 2 sigma band can be
+extracted by taking the 2.5\% percentile (2$\sigma$ down), 34\% (1$\sigma$ down), 84\% (1$\sigma$ up), 97.5\%
+(2$\sigma$ up) of the distribution of limits from toys for each mass.
+The observed limit is the limit obtained from data, using the real data.
+
+
 \subsection{Setting up a model in RooFit}
-Based on out previous discussion, it is clear that the first step to use the
-LLR as a means to measure the significance of a signal is to setup a maximum
+Based on our previous discussion, it is clear that the first step to use the
+PL as a means to measure the significance of a signal is to setup a maximum
 likelihood fit of the POI with constraints on the nuisances.
 
 Stated differently, we want to setup a parametric model which describes our
@@ -580,13 +644,13 @@ variable \verb+model+ (an instance of class \verb!RooAddPdf!), which effectively
 \verb!norm_vv*pdf_vv!.
 
 In the file \verb+HWWWorkspace.C+ we also prepare the nuisance constraints, to
-be used later. These have the form of Gaussian distribution of the \verb+mu_+
+be used later. These have the form of log-normal distributions of the \verb+mu_+
 parameters.
 
 Everything is saved in an instance of \verb+RooWorkspace+ and returned to the
 calling code, for later use.
 
-\section*{Exercise 4}
+\section*{Exercise 3}
 {\bf Observed significance with LLR}
 
 Using the workspace obtained with \verb+HWWWorkspace.C+ it is relatively easy
@@ -606,28 +670,42 @@ and evaluate it for a value equal to 0 for the variable \verb+mu+, so that we
 can construct the test statistics of Eq.~\ref{eq:teststat_signif}.
 
 
-\section*{Exercise 5}
+\section*{Exercise 4}
 {\bf Upper limit with LLR}
+Using the workspace one can compute the upper limit with the test statistics
+defined in Eq.~\ref{eq:teststat_limit}.
+Once one had the negative log likelihood NLL, as described above, one can
+compute the denominator of Eq.~\ref{eq:teststat_limit} with something like:
 
-One can use the LLR also to set an upper limit in a way that is similar to the
-graphical estimation of errors for a ML estimator. One simply draws the LLR as
-a function of the parameter of interest and search for the crossing at +2.
-This will give the 95\% CL upper limit on the POI.
-With the technicalities introduced before, the student should be able to carry
-out this calculation.
+\begin{lstlisting}
+RooAbsReal* nll = model->createNLL(*data, ExternalConstraints(*constraints) );
+RooMinuit m(*nll);
+m.setPrintLevel(-1000); //silence minuit
+m.migrad(); //minimize
+if (mu->getVal() < 0){ //if best fit is negative
+  //redo the fit freezing mu to 0
+  mu->setVal(0);
+  mu->setConstant(true);
+  m.migrad();
+}
+double minNLL = nll->getVal(); //value of the negative log likelihood at global minimum
+\end{lstlisting}
 
-Fig.~\ref{fig:profile} shows the shape of the LLR for the 700 GeV mass point, 
-as a function of the POI for the real data (blue) and for the expectation, obtained assuming we observe
-exactly the expected background. 
+Then one can compute $q_\mu$ with
+\begin{lstlisting}
+mu->setVal(k*0.01);  //set mu to a given value
+mu->setConstant(true); // make it constant, so the fit does not touch it
+m.migrad(); // minimize
+double minNLLmu = nll->getVal(); // net the minimum of NLL for that choice of mu
+double q_mu = 2*(minNLLmu - minNLL); // compute q_mu
+double CLsb = 1.-ROOT::Math::chisquared_cdf(q_mu,1.);  // compute its p-value 
+\end{lstlisting}
 
-\begin{figure}[!b]
-\centering
-\includegraphics[width=0.5\textwidth]{images/limitLLR.pdf}
-\caption{Log likelihood ratio profile for the signal strength $\mu$ for the
-data corresponding to the 700 GeV mass point. The graphical method for limit
-setting is shown.\label{fig:profile}}
-\end{figure}
-
-
+Please make the Brazilian plot, testing both the simple cut and count analysis
+of Exercise 2, and an analysis in which you feed the machinery with the
+$m^T_i$ distribution directly, for example with 10 bins. Which analysis
+yields the {\bf better} expected limit? {\bf Why do you think it would be a very
+bad idea to try and optimize the observed limit (or the observed
+significance)?}
 
 \end{document}          
