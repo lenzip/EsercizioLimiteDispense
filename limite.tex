@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{hyperref}
 \usepackage{color}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -426,7 +427,7 @@ constraint on $\mu_b$ with standard deviation $\delta_{\nu_b}/\nu_b$. The new
 likelihood function is now function of both $\mu$ (the POI) and $\mu_b$ (a
 nuisance parameter), and reads:
 \begin{equation}
-\mathcal{L}(\mu;\mu_b)=\frac{1}{2\pi\frac{\delta_{\nu_b}}{\nu_b}}e^{-\frac{(\mu_b-1)^2}{2(\frac{\delta_{\nu_b}}{\nu_b})^2}}\times\frac{(\mu_b\cdot\nu_b+\mu\cdot\nu_s)^{N_{obs}}}{N_{obs}!}e^{-(\mu_b\cdot\nu_b+\mu\cdot\nu_s)},
+\mathcal{L}(\mu;\mu_b)=\frac{1}{\sqrt{2\pi}\frac{\delta_{\nu_b}}{\nu_b}}e^{-\frac{(\mu_b-1)^2}{2(\frac{\delta_{\nu_b}}{\nu_b})^2}}\times\frac{(\mu_b\cdot\nu_b+\mu\cdot\nu_s)^{N_{obs}}}{N_{obs}!}e^{-(\mu_b\cdot\nu_b+\mu\cdot\nu_s)},
 \label{eq:likelihood_nuisance}
 \end{equation}
 where the initial part before the $\times$ symbol is the Gaussian constraint
@@ -480,7 +481,7 @@ maximum of the
 likelihood \ref{eq:likelihood_nuisance}. Suppose now that we choose a
 particular value of the POI, a value of our choice and we call it $\mu$: then
 {\bf $\hat{\hat{\mu}}_b$ is the value of the nuisance $\mu_b$ which minimizes the
-NLL function \ref{eq:nll} for our chosen value of $\mu$}.
+NLL function for our chosen value of $\mu$}.
 
 The reason why we go through the burden of constructing $\lambda_\mu(N_{obs})$
 is two-fold: 
@@ -506,20 +507,13 @@ We can use a test statistic that is based on the PL to test the significance
 of a $\hat{\mu}>0$ result from the best fit of our data. The test statistics
 that we are going to use is $q_{0}$ defined as follows:
 \begin{equation}
-q_0=\begin{cases}
--2\mathrm{ln}\lambda_0(N_{obs}) & \hat{\mu}\geq0 \\
-0 & \hat{\mu}<0
-\end{cases}
+q_0=-2\mathrm{ln}\lambda_0(N_{obs})
 \label{eq:teststat_signif}
 \end{equation}
 What does this mean in practice? First of all, we are testing against the
 background only hypothesis, so we use the PL for the case $\mu=0$,
 $\lambda_0(N_{obs})$ (as we were mentioning before, we can compute the PL for
 any choice of $\mu$).
-Then, since we regard only upward fluctuations of the data as possible
-signals, we distinguish the cases in which the best fit value for the signal
-strength $\hat{\mu}$ is larger (possible signal) or smaller (background
-underfluctuation) than 0. 
 As mentioned above, by the Wilks theorem, {\bf $q_0$ is distributed
 asymptotically as a $\chi^2$ with 1 degree of freedom in the background only
 hypothesis.} 
@@ -547,13 +541,12 @@ q_{\mu}=\begin{cases}
 \end{cases}
 \label{eq:teststat_limit}
 \end{equation}
-{\bf This test statistics is distributed
-asymptotically as a $\chi^2$ with 1 degree of freedom in the $\mu$ hypothesis.}
-This means that if the signal exists and its signal strength is $\mu$,
-$q_{\mu}$ is distributed as a $\chi^2$ with 1 degree of freedom. We can then
+This test statistics is {\bf not} exactly distributed
+asymptotically as a $\chi^2$ with 1 degree, due to the change in the behavior around $\hat{\mu}=0$.
+Its asymptotic distribution is however known and computed in \href{https://arxiv.org/abs/1007.1727}{this article by G. Cowan}.
+We can then
 use this fact to compute the p-value of the $\mu$ hypothesis in the asymptotic
-approximation. As for the significance $p=1-\Phi(\sqrt{q_{\mu}})$. 
-The $\mu$ hypothesis is excluded at $1-\alpha$ CL if $p<\alpha$.
+approximation. 
 
 
 \subsection{Brazilian plots}
@@ -651,7 +644,7 @@ Everything is saved in an instance of \verb+RooWorkspace+ and returned to the
 calling code, for later use.
 
 \section*{Exercise 3}
-{\bf Observed significance with LLR}
+{\bf Observed significance}
 
 Using the workspace obtained with \verb+HWWWorkspace.C+ it is relatively easy
 to compute the significance of the observed data.
@@ -671,7 +664,7 @@ can construct the test statistics of Eq.~\ref{eq:teststat_signif}.
 
 
 \section*{Exercise 4}
-{\bf Upper limit with LLR}
+{\bf Upper limit}
 Using the workspace one can compute the upper limit with the test statistics
 defined in Eq.~\ref{eq:teststat_limit}.
 Once one had the negative log likelihood NLL, as described above, one can
